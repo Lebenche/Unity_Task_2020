@@ -9,6 +9,7 @@ public class Bird : MonoBehaviour
 	private Animator anim;					//Reference to the Animator component.
 	private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
 
+  public float maxYPosition;      // The max height where the bird can jump 
 	void Start()
 	{
 		//Get reference to the Animator component attached to this GameObject.
@@ -22,8 +23,8 @@ public class Bird : MonoBehaviour
 		//Don't allow control if the bird has died.
 		if (isDead == false) 
 		{
-			//Look for input to trigger a "flap".
-			if (Input.GetMouseButtonDown(0)) 
+			//Look for input to trigger a "flap" and the bird has to be visible on the screen.
+			if (Input.GetMouseButtonDown(0) && gameObject.GetComponent<Transform>().position.y<maxYPosition) 
 			{
 				//...tell the animator about it and then...
 				anim.SetTrigger("Flap");
