@@ -32,19 +32,30 @@ public class Bird : MonoBehaviour
 				//	new Vector2(rb2d.velocity.x, 0);
 				//..giving the bird some upward force.
 				rb2d.AddForce(new Vector2(0, upForce));
-			}
-		}
+
+        // Each time the bird flaps the wing sound is played 
+        FindObjectOfType<AudioManager>().Play("Wing");
+
+      }
+    }
 	}
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		// Zero out the bird's velocity
-		rb2d.velocity = Vector2.zero;
-		// If the bird collides with something set it to dead...
-		isDead = true;
-		//...tell the Animator about it...
-		anim.SetTrigger ("Die");
-		//...and tell the game control about it.
-		GameControl.instance.BirdDied ();
+    // This condition allows to not call these lines below each time the bird collids with something after he died
+    if (isDead == false) {
+      // When the bird collides with something when he's alive the hit sound is played 
+      FindObjectOfType<AudioManager>().Play("Hit");
+      // Zero out the bird's velocity
+      rb2d.velocity = Vector2.zero;
+      // If the bird collides with something set it to dead...
+      isDead = true;
+
+      //...tell the Animator about it...
+      anim.SetTrigger("Die");
+      //...and tell the game control about it.
+      GameControl.instance.BirdDied();
+    }
+    
 	}
 }

@@ -41,17 +41,24 @@ public class GameControl : MonoBehaviour
 		//The bird can't score if the game is over.
 		if (gameOver)	
 			return;
-		//If the game is not over, increase the score...
-		score++;
+
+    // When the bird score the audio manager play the sound for score
+    FindObjectOfType<AudioManager>().Play("Score");
+    //If the game is not over, increase the score...
+    score++;
 		//...and adjust the score text.
 		scoreText.text = "Score: " + score.ToString();
 	}
 
 	public void BirdDied()
 	{
-		//Activate the game over text.
-		gameOvertext.SetActive (true);
+    
+    //Activate the game over text.
+    gameOvertext.SetActive (true);
 		//Set the game to be over.
 		gameOver = true;
-	}
+
+    // When the bird dies the die sound is played 
+    FindObjectOfType<AudioManager>().Play("Die");
+  }
 }
