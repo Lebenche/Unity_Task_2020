@@ -38,8 +38,10 @@ public class GameControl : MonoBehaviour
 		//If the game is over and the player has pressed some input...
 		if (gameOver && Input.GetMouseButtonDown(0)) 
 		{
-			//...reload the current scene.
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      // ... play the transition sound
+      FindObjectOfType<AudioManager>().Play("Swooshing");
+      //...reload the current scene.
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 
