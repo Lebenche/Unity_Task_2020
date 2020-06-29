@@ -30,10 +30,11 @@ public class GameControl : MonoBehaviour
 		else if(instance != this)
 			//...destroy this one because it is a duplicate.
 			Destroy (gameObject);
+
     PauseGame();
 	}
-
-	void Update()
+   
+  void Update()
 	{
 		//If the game is over and the player has pressed some input...
 		if (gameOver && Input.GetMouseButtonDown(0)) 
@@ -64,8 +65,14 @@ public class GameControl : MonoBehaviour
     
     //Activate the game over text.
     gameOvertext.SetActive (true);
-		//Set the game to be over.
-		gameOver = true;
+    // The menu gameOverText reduce its scale to zero immediately and then increase its scale to 1 in an half second
+
+    LeanTween.scale(gameOvertext, new Vector3(0, 0, 0), 0f);
+    LeanTween.scale(gameOvertext, new Vector3(1, 1, 1), 0.5f);
+
+
+    //Set the game to be over.
+    gameOver = true;
 
     // When the bird dies the die sound is played 
     FindObjectOfType<AudioManager>().Play("Die");
@@ -74,18 +81,29 @@ public class GameControl : MonoBehaviour
 
   private void PauseGame()
   {
+    panelMenu.SetActive(true);
+
+    // the menu increase its scale to 1 immediately 
+    LeanTween.scale(panelMenu, new Vector3(1, 1, 1), 0f);
+
     Time.timeScale = 0;
     //Disable scripts that still work while timescale is set to 0
     isPaused = true;
-    panelMenu.SetActive(true);
-  }
 
+
+
+
+  }
+  
   public void ContinueGame()
   {
     Time.timeScale = 1;
     //enable the scripts again
     isPaused = false;
-    panelMenu.SetActive(false);
+
+    // When the player start, the menu reduce its scale to zero in an half second
+    LeanTween.scale(panelMenu, new Vector3(0, 0, 0), 0.5f);
+
 
   }
 
