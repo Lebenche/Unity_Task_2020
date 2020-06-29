@@ -19,6 +19,7 @@ public class GameControl : MonoBehaviour
   [Header("UI GameObjects")]
   public GameObject panelMenu;
   public GameObject startButton;
+  public GameObject panelOptions;
 
 	void Awake()
 	{
@@ -78,7 +79,10 @@ public class GameControl : MonoBehaviour
     FindObjectOfType<AudioManager>().Play("Die");
   }
 
-
+  /*
+   Interface Control
+     
+     */
   private void PauseGame()
   {
     panelMenu.SetActive(true);
@@ -86,12 +90,14 @@ public class GameControl : MonoBehaviour
     // the menu increase its scale to 1 immediately 
     LeanTween.scale(panelMenu, new Vector3(1, 1, 1), 0f);
 
+    panelOptions.SetActive(false);
+    //LeanTween.scale(panelOptions, new Vector3(0, 0, 0), 0f);
+
+    
+
     Time.timeScale = 0;
     //Disable scripts that still work while timescale is set to 0
     isPaused = true;
-
-
-
 
   }
   
@@ -113,10 +119,27 @@ public class GameControl : MonoBehaviour
     if (Application.isEditor) {
       UnityEditor.EditorApplication.isPlaying = false;
     }
-    // ... Else if it's a bild the app will close with this  
+    // ... else if it's a build the app will close with this  
     else {
       Application.Quit();
 
     }
+  }
+
+  public void OpenOptions()
+  {
+
+    panelOptions.SetActive(true);
+
+  }
+  public void QuitOptions()
+  {
+    panelOptions.SetActive(false);
+  }
+
+  public void TestSounds()
+  {
+    FindObjectOfType<AudioManager>().Play("Score");
+
   }
 }
