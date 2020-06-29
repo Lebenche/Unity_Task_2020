@@ -13,6 +13,9 @@ public class GameControl : MonoBehaviour
 	public bool gameOver = false;				//Is the game over?
 	public float scrollSpeed = -1.5f;
 
+  [HideInInspector]
+  public bool isPaused;
+
 
 	void Awake()
 	{
@@ -24,6 +27,7 @@ public class GameControl : MonoBehaviour
 		else if(instance != this)
 			//...destroy this one because it is a duplicate.
 			Destroy (gameObject);
+    PauseGame();
 	}
 
 	void Update()
@@ -60,5 +64,20 @@ public class GameControl : MonoBehaviour
 
     // When the bird dies the die sound is played 
     FindObjectOfType<AudioManager>().Play("Die");
+  }
+
+
+  private void PauseGame()
+  {
+    Time.timeScale = 0;
+    //Disable scripts that still work while timescale is set to 0
+    isPaused = true;
+  }
+
+  public void ContinueGame()
+  {
+    Time.timeScale = 1;
+    //enable the scripts again
+    isPaused = false;
   }
 }
