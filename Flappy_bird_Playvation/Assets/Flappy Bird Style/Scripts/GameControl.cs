@@ -16,6 +16,9 @@ public class GameControl : MonoBehaviour
   [HideInInspector]
   public bool isPaused;
 
+  [Header("UI GameObjects")]
+  public GameObject panelMenu;
+  public GameObject startButton;
 
 	void Awake()
 	{
@@ -72,6 +75,7 @@ public class GameControl : MonoBehaviour
     Time.timeScale = 0;
     //Disable scripts that still work while timescale is set to 0
     isPaused = true;
+    panelMenu.SetActive(true);
   }
 
   public void ContinueGame()
@@ -79,5 +83,20 @@ public class GameControl : MonoBehaviour
     Time.timeScale = 1;
     //enable the scripts again
     isPaused = false;
+    panelMenu.SetActive(false);
+
+  }
+
+  public void QuitGame()
+  {
+    // If we are in the Editor the app will close with this ...
+    if (Application.isEditor) {
+      UnityEditor.EditorApplication.isPlaying = false;
+    }
+    // ... Else if it's a bild the app will close with this  
+    else {
+      Application.Quit();
+
+    }
   }
 }
