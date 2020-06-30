@@ -10,6 +10,17 @@ public class GameControl : MonoBehaviour
 	public GameObject gameOvertext;				//A reference to the object that displays the text which appears when the player dies.
 
 	private int score = 0;						//The player's score.
+
+  // A property to access to the value of score through the others scripts
+  public int Score
+  {
+    get {
+      return score;
+    }
+    set {
+      score = value;
+    }
+  }
 	public bool gameOver = false;				//Is the game over?
 	public float scrollSpeed = -1.5f;
 

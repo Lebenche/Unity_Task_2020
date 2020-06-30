@@ -17,6 +17,9 @@ public class ColumnPool : MonoBehaviour
 
 	private float timeSinceLastSpawned;
 
+  [Header("Change Columns")]
+  public int scoreToChangeColumns; // The score the player wiil have to exceed to change the obstacles
+  public Sprite redColumn; // Column we want to use after the player reach certain score
 
 	void Start()
 	{
@@ -24,8 +27,10 @@ public class ColumnPool : MonoBehaviour
 
 		//Initialize the columns collection.
 		columns = new GameObject[columnPoolSize];
-		//Loop through the collection... 
-		for(int i = 0; i < columnPoolSize; i++)
+    
+
+    //Loop through the collection... 
+    for (int i = 0; i < columnPoolSize; i++)
 		{
 			//...and create the individual columns.
 			columns[i] = (GameObject)Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
@@ -38,7 +43,7 @@ public class ColumnPool : MonoBehaviour
 	{
 		timeSinceLastSpawned += Time.deltaTime;
 
-		if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate) 
+    if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate) 
 		{	
 			timeSinceLastSpawned = 0f;
 
@@ -48,13 +53,24 @@ public class ColumnPool : MonoBehaviour
 			//...then set the current column to that position.
 			columns[currentColumn].transform.position = new Vector2(spawnXPosition, spawnYPosition);
 
-			//Increase the value of currentColumn. If the new size is too big, set it back to zero
-			currentColumn ++;
+      // If the user is near to reach the score to change columns, we change the sprite of the prefab which is going to appear just after the user reaches this score
+      if (GameControl.instance.Score >= scoreToChangeColumns - 2) {
+        
+        columns[currentColumn].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = redColumn;
+        columns[currentColumn].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = redColumn;
 
-			if (currentColumn >= columnPoolSize) 
+      }
+
+      //Increase the value of currentColumn. If the new size is too big, set it back to zero
+
+      currentColumn++;
+      
+      if (currentColumn >= columnPoolSize) 
 			{
 				currentColumn = 0;
-			}
+        
+
+      }
 		}
 	}
 }
