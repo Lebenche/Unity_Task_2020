@@ -11,7 +11,6 @@ public class Bird : MonoBehaviour
 
   public float maxYPosition;      // The max height where the bird can jump
 
-  public GameControl gc;          // Reference to the GameControl Class
 	void Start()
 	{
 		//Get reference to the Animator component attached to this GameObject.
@@ -26,7 +25,7 @@ public class Bird : MonoBehaviour
 		if (isDead == false) 
 		{
 			//Look for input to trigger a "flap" And the bird has to be visible on the screen AND the game has not to be paused.
-			if (Input.GetMouseButtonDown(0) && gameObject.GetComponent<Transform>().position.y<maxYPosition && gc.isPaused == false) 
+			if (Input.GetMouseButtonDown(0) && gameObject.GetComponent<Transform>().position.y<maxYPosition && GameControl.instance.isPaused == false) 
 			{
 				//...tell the animator about it and then...
 				anim.SetTrigger("Flap");
