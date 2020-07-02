@@ -10,7 +10,7 @@ public class Bird : MonoBehaviour
 	private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
 
   public float maxYPosition;      // The max height where the bird can jump
-
+  float minYposition = -5.66f; // The minimum height where bird can go when is on "Ghost Mode"
 	void Start()
 	{
 		//Get reference to the Animator component attached to this GameObject.
@@ -38,6 +38,11 @@ public class Bird : MonoBehaviour
         // Each time the bird flaps the wing sound is played 
         FindObjectOfType<AudioManager>().Play("Wing");
 
+      }
+      // If the bird is under screen he died 
+      if (gameObject.GetComponent<Transform>().position.y< minYposition) {
+        isDead = true;
+        GameControl.instance.BirdDied();
       }
     }
 	}
