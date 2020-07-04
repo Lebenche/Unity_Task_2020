@@ -54,7 +54,6 @@ public class Ghost : MonoBehaviour
     // If the bonus touches an obstacle, the bonus changes its position
     if (other.GetComponent<BoxCollider2D>() != null && other.tag!="Player") {
       LeanTween.move(gameObject, new Vector3(gameObject.transform.position.x + 2, Random.Range(-1, 4), 0), 0f);
-      Debug.Log("Object moved");
     }
   }
 
