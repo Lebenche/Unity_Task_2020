@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class Sound 
 {
-
+  // The class which defines the parameters we need for our audio manager 
   public string name;
 
   public AudioClip clip;
