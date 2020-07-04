@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
 	public static GameControl instance;			//A reference to our game control script so we can access it statically.
 	public Text scoreText;						//A reference to the UI text component that displays the player's score.
 	public GameObject gameOvertext;				//A reference to the object that displays the text which appears when the player dies.
-
+  public Text highScoreText;        //A reference to the UI text component that displays the player's highscore.
 	private int score = 0;						//The player's score.
 
   // A property to access to the value of score through the others scripts
@@ -21,6 +21,8 @@ public class GameControl : MonoBehaviour
       score = value;
     }
   }
+
+  private int highscore;
 	public bool gameOver = false;				//Is the game over?
 	public float scrollSpeed = -1.5f;
 
@@ -44,8 +46,18 @@ public class GameControl : MonoBehaviour
 			Destroy (gameObject);
 
     PauseGame();
-	}
-   
+    // If a Highscore has been stored use this one ...
+    if (PlayerPrefs.HasKey("HighScorePref")) {
+      highscore = PlayerPrefs.GetInt("HighScorePref");
+    }
+    // ...else set the Highscore to 0
+    else {
+      highscore = 0; 
+    }
+    highScoreText.text = "HighScore: " + highscore.ToString();
+
+  }
+
   void Update()
 	{
 		//If the game is over and the player has pressed some input...
@@ -88,12 +100,19 @@ public class GameControl : MonoBehaviour
 
     // When the bird dies the die sound is played 
     FindObjectOfType<AudioManager>().Play("Die");
+    // If the player's score is better than the highscore it becomes the new highscore
+    if (score > highscore) {
+      highscore = score;
+      highScoreText.text= "HighScore: " + highscore.ToString();
+      PlayerPrefs.SetInt("HighScorePref", highscore); // We store the highscore value 
+
+    }
+
   }
 
-  /*
-   Interface Control
-     
-     */
+
+   //Interface Control//
+  
   private void PauseGame()
   {
     panelMenu.SetActive(true);
