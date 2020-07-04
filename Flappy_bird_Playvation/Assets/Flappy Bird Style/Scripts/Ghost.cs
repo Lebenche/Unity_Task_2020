@@ -14,6 +14,7 @@ public class Ghost : MonoBehaviour
     MoveBonus();   
   }
 
+ 
   private void Update()
   {
     if (isBonusActive) {
@@ -35,13 +36,16 @@ public class Ghost : MonoBehaviour
   {
     if (other.GetComponent<Bird>() != null) {
       //If the bird hits the trigger collider of the ghost bonus ....
-      //
-      //... its trigger becomes true
+      
+      //... its trigger becomes true...
       bird.GetComponent<Collider2D>().isTrigger = true;
-      // it becomes transparent 
+      // ...it becomes transparent ...
       LeanTween.alpha(bird, 0.6f, 1f);
       isBonusActive = true;
-      // ...the bonus move 
+      // ... and the Bonus sound is played 
+
+      FindObjectOfType<AudioManager>().Play("Bonus");
+
 
       bird.GetComponent<Rigidbody2D>().freezeRotation = true;
       MoveBonus();
