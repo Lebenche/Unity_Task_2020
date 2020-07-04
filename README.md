@@ -3,8 +3,8 @@
 # Commit tags meanings : 
 [func] : adding a functionality 
  
-#[edit] : modifying a current functionality
+[edit] : modifying a current functionality
 
-#[del] : deleting something
+[del] : deleting something
 
-#[refactor] : refactoring 
+[refactor] : refactoring 
