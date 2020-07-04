@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <LangTexts>
+    
+    <texts id ="0">
+      <text>Aloittaa</text>
+    </texts>
+    
+    <texts id ="1">
+      <text>Vaihtoehdot</text>
+    </texts>
+    
+    <texts id ="2">
+      <text>Lähteä</text>
+    </texts>
+    
+    <texts id ="3">
+      <text>Äänenvoimakkuus</text>
+    </texts>
+    
+    <texts id ="4">
+      <text>Testaa ääni</text>
+    </texts>
+
+    <texts id ="5">
+      <text>Valitse kieli</text>
+    </texts>
+
+    <texts id ="6">
+      <text>Jatka koskettamalla näyttöä</text>
+    </texts>
+    
+    <texts id ="7">
+      <text>Pisteet:</text>
+    </texts>
+    
+  </LangTexts>
+</xml>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <LangTexts>
+    
+    <texts id ="0">
+      <text>Start</text>
+    </texts>
+    
+    <texts id ="1">
+      <text>Options</text>
+    </texts>
+    
+    <texts id ="2">
+      <text>Quit</text>
+    </texts>
+    
+    <texts id ="3">
+      <text>Sound's volume</text>
+    </texts>
+    
+    <texts id ="4">
+      <text>Test the sound</text>
+    </texts>
+
+    <texts id ="5">
+      <text>Select your langage</text>
+    </texts>
+
+    <texts id ="6">
+      <text>touch the screen to continue</text>
+    </texts>
+    
+    <texts id ="7">
+      <text>Score:</text>
+    </texts>
+    
+  </LangTexts>
+</xml>
